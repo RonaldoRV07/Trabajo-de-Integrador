@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='estilos2.css'>
+</head>
+<body>
+    <div class="parent">
+        <div class="div1">
+            <h1>FarmaTotal</h1>
+            <ul>
+                <li><a href="Medicamentos.html">Medicamentos</a></li>
+                <li><a href="Proovedores.html">Proveedores</a></li>
+                <li><a href="Usuario.html">Usuarios</a></li>
+                <li><a href="Comentarios.html">Comentarios</a></li>
+            </ul>
+        </div>
+        <div class="div2">
+            <h2>Medicamentos Farmacéuticos</h2>
+            <form id="medicamentoForm">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br><br>
+
+                <label for="precio">Precio:</label>
+                <input type="number" id="precio" name="precio" placeholder="Precio"><br><br>
+
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" placeholder="Cantidad"><br><br>
+
+                <label for="fecha">Fecha de Vencimiento:</label>
+                <input type="date" id="fecha" name="fecha_vencimiento"><br><br>
+
+                <button type="button" onclick="agregarMedicamento()">Agregar Medicamento</button>
+            </form>
+        </div>
+        <div class="div3">
+            <h2>Lista de Medicamentos</h2>
+            <table border="1" id="medicamentosTable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Fecha de Vencimiento</th>
+                        <th>Borrar</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Aquí se añadirán las filas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function agregarMedicamento() {
+            // Obtener los valores de los campos
+            var nombre = document.getElementById('nombre').value;
+            var precio = document.getElementById('precio').value;
+            var cantidad = document.getElementById('cantidad').value;
+            var fecha = document.getElementById('fecha').value;
+
+            // Referencia a la tabla
+            var table = document.getElementById("medicamentosTable").getElementsByTagName('tbody')[0];
+
+            // Crear una nueva fila y celdas
+            var newRow = table.insertRow();
+            var cellNombre = newRow.insertCell(0);
+            var cellPrecio = newRow.insertCell(1);
+            var cellCantidad = newRow.insertCell(2);
+            var cellFecha = newRow.insertCell(3);
+            var cellBorrar = newRow.insertCell(4);
+            var cellEditar = newRow.insertCell(5);
+
+            // Añadir valores a las celdas
+            cellNombre.innerHTML = nombre;
+            cellPrecio.innerHTML = precio;
+            cellCantidad.innerHTML = cantidad;
+            cellFecha.innerHTML = fecha;
+            cellBorrar.innerHTML = '<button onclick="borrarFila(this)">Borrar</button>';
+            cellEditar.innerHTML = '<button onclick="editarFila(this)">Editar</button>';
+
+            // Limpiar el formulario después de agregar
+            document.getElementById('medicamentoForm').reset();
+        }
+
+        function borrarFila(button) {
+            // Eliminar la fila
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        function editarFila(button) {
+            // Aquí puedes implementar la lógica para editar una fila
+            alert('Función de edición no implementada aún');
+        }
+    </script>
+</body>
+</html>

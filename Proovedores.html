@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='estilos2.css'>
+</head>
+<body>
+    <div class="parent">
+        <div class="div1">
+            <h1>FarmaTotal</h1>
+            <ul>
+                <li><a href="Medicamentos.html">Medicamentos</a></li>
+                <li><a href="Proovedores.html">Proveedores</a></li>
+                <li><a href="Usuario.html">Usuarios</a></li>
+                <li><a href="Comentarios.html">Comentarios</a></li>
+            </ul>
+        </div>
+        <div class="div2">
+            <h2>Ingresar Proveedores</h2>
+            <form id="formularioProveedores">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br><br>
+                
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="Teléfono"><br><br>
+                
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" placeholder="Dirección"><br><br>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Email"><br><br>
+                
+                <button type="button" onclick="agregarProveedor()">Agregar Proveedor</button>
+            </form>
+        </div>
+        <div class="div3">
+            <h2>Proveedores Registrados</h2>
+            <table border="1" id="tablaProveedores">
+                <thead>
+                    <tr>
+                        <th>Número</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Email</th>
+                        <th>Borrar</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Filas de proveedores se agregarán aquí -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let contador = 1; // Variable para llevar el conteo de proveedores registrados
+
+        function agregarProveedor() {
+            // Obtener los valores del formulario
+            const nombre = document.getElementById("nombre").value;
+            const telefono = document.getElementById("telefono").value;
+            const direccion = document.getElementById("direccion").value;
+            const email = document.getElementById("email").value;
+
+            // Validar que todos los campos estén llenos
+            if (!nombre || !telefono || !direccion || !email) {
+                alert("Por favor, complete todos los campos.");
+                return;
+            }
+
+            // Crear una nueva fila en la tabla
+            const tabla = document.getElementById("tablaProveedores").getElementsByTagName("tbody")[0];
+            const nuevaFila = tabla.insertRow();
+
+            nuevaFila.innerHTML = `
+                <td>${contador}</td>
+                <td>${nombre}</td>
+                <td>${telefono}</td>
+                <td>${direccion}</td>
+                <td>${email}</td>
+                <td><button onclick="borrarFila(this)">Borrar</button></td>
+                <td><button onclick="editarFila(this)">Editar</button></td>
+            `;
+
+            // Incrementar el contador
+            contador++;
+
+            // Limpiar el formulario
+            document.getElementById("formularioProveedores").reset();
+        }
+
+        function borrarFila(boton) {
+            // Eliminar la fila correspondiente al botón
+            const fila = boton.parentNode.parentNode;
+            fila.parentNode.removeChild(fila);
+
+            // Reajustar los números de las filas
+            const filas = document.querySelectorAll("#tablaProveedores tbody tr");
+            contador = 1;
+            filas.forEach((fila) => {
+                fila.cells[0].textContent = contador++;
+            });
+        }
+
+        function editarFila(boton) {
+            // Aquí puedes implementar la funcionalidad para editar la fila
+            alert("Funcionalidad de editar en desarrollo.");
+        }
+    </script>
+</body>
+</html>

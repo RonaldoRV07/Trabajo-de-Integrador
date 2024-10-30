@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="estilos4.css">
+</head>
+<body>
+    <div class="container">
+        <div class="register-box">
+            <h2>Registro</h2>
+            <form onsubmit="return registrarUsuario()">
+                <div class="user-box">
+                    <input type="text" name="nombre" required="">
+                    <label>Nombre</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="primerApellido" required="">
+                    <label>Primer Apellido</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="segundoApellido" required="">
+                    <label>Segundo Apellido</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" name="nombreUsuario" required="">
+                    <label>Nombre de Usuario</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" name="contrasena" required="">
+                    <label>Contraseña</label>
+                </div>
+                <div class="user-box">
+                    <input type="password" name="confirmarContrasena" required="">
+                    <label>Confirmar Contraseña</label>
+                </div>
+                <div class="button-container">
+                    <button type="submit">Registrar</button>
+                    <button type="button" onclick="window.location.href='Inicio.html'">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function registrarUsuario() {
+            alert("Se registró con éxito");
+            return false; // Evita que el formulario se envíe realmente
+        }
+    </script>
+</body>
+</html>
